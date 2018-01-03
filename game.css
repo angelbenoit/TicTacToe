@@ -1,9 +1,9 @@
 
 td {
-    border: 5px solid #919191;
+    border: 3px solid #919191;
     height: 65px;
-    width: 65px;
-    padding-left: 13%;
+    width: 100px;
+    padding-left: 0;
     background: black;
 }
 
@@ -19,11 +19,24 @@ td {
 }
 
 #position{
+    margin-top: 10%;
+    text-align: center;
+}
 
+.btn{
+    font-size: 20px;
+    color: white;
+    background: #000000;
+    border: 3px solid #7f7f7f;
+}
+
+.btn:hover{
+    background: #ffffff;
+    color: #000000;
 }
 
 .player{
-    font-size: 25px;
+    font-size: 20px;
     font-family: cursive;
     color: white;
 }
