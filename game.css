@@ -1,6 +1,29 @@
+
 td {
-    border: 1px solid black;
-    height: 50px;
-    width: 50px;
-    padding-left: 15%;
+    border: 5px solid #919191;
+    height: 65px;
+    width: 65px;
+    padding-left: 13%;
+    background: black;
+}
+
+#tabl{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
+#position{
+
+}
+
+.player{
+    font-size: 25px;
+    font-family: cursive;
+    color: white;
 }
