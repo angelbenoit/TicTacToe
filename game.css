@@ -30,7 +30,13 @@ td {
     border: 3px solid #7f7f7f;
 }
 
-.btn:hover{
+#X{
+    background: #ffffff;
+    color: #000000;
+}
+
+#X:hover,
+#O:hover{
     background: #ffffff;
     color: #000000;
 }
