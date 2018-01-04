@@ -1,26 +1,21 @@
 $(document).ready(function () {
 
-    var user;
+    var user = "X";
     var board = [];
-
-
+    var boardIDs = ["row1col1", "row1col2", "row1col3",
+                    "row2col1", "row2col2", "row2col3",
+                    "row3col1", "row3col2", "row3col3"];
     //user gets to pick whether they are playing as "X" or "O"
     $(".btn").click(function () {
         if($(this).attr("id") === "X"){
             user = "X";
-            $(this).css("background", "white");
-            $(this).css("color", "black");
-            $("#O").css({"background": "black", "color": "white"});
+            pickSymbol(user);
         }
         else{
             user = "O";
-            $(this).css("background", "white");
-            $(this).css("color", "black");
-            $("#X").css({"background": "black", "color": "white"});
+            pickSymbol(user);
         }
-
     });
-
 
     //adds user's symbol to the board and the board array
     $("td").click(function () {
@@ -28,37 +23,63 @@ $(document).ready(function () {
 
         switch(id){
             case "row1col1":
-                board[7] = user;
+                check(7, user, id);
                 break;
             case "row1col2":
-                board[8] = user;
+                check(8, user, id);
+                resetBoard();
                 break;
             case "row1col3":
-                board[9] = user;
+                check(9, user, id);
                 break;
             case "row2col1":
-                board[4] = user;
+                check(4, user, id);
                 break;
             case "row2col2":
-                board[5] = user;
+                check(5, user, id);
                 break;
             case "row2col3":
-                board[6] = user;
+                check(6, user, id);
                 break;
             case "row3col1":
-                board[1] = user;
+                check(1, user, id);
                 break;
             case "row3col2":
-                board[2] = user;
+                check(2, user, id);
                 break;
             case "row3col3":
-                board[3] = user;
+                check(3, user, id);
                 break;
         }
 
-        $(this).text(user);
-        console.log(board);
     });
 
+
+    function check(spot, value, Id){
+        if(board[spot] !== "X" && board[spot] !== "O"){
+            board[spot] = value;
+            var val = "#" + Id;
+            //console.log(val + " " + value);
+            $(val).text(value);
+        }
+    }
+
+    function resetBoard() {
+        for(var i = 0; i < boardIDs.length; i++){
+            board.pop();
+            $(boardIDs[i]).text(board[i]);
+        }
+    }
+
+    function pickSymbol(symbol) {
+        $(symbol).css("background", "white");
+        $(symbol).css("color", "black");
+        if(symbol === "X"){
+            $("#O").css({"background": "black", "color": "white"});
+        }
+        else {
+            $("#X").css({"background": "black", "color": "white"});
+        }
+    }
 
 });
