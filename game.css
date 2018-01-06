@@ -44,14 +44,13 @@ td {
     color: palegreen;
 }
 
-#X:hover,
-#O:hover{
-    background: #ffffff;
-    color: #000000;
+#reset{
+    margin-top: 1%;
+    visibility: hidden;
 }
 
 .player{
     font-size: 20px;
     font-family: cursive;
-    color: white;
+    color: palegreen;
 }
