@@ -84,7 +84,7 @@ $(document).ready(function () {
     function pickSymbol(symbol) {
         symbol = "#" + symbol;
         //console.log("changing background color of " + symbol + " to white and text black");
-        $(symbol).css("background", "white");
+        $(symbol).css("background", "palegreen");
         $(symbol).css("color", "black");
         if(symbol === "#X"){
             //console.log("O is changing");

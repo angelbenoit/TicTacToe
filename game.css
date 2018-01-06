@@ -1,3 +1,11 @@
+body {
+    background: linear-gradient(palegreen ,greenyellow, lawngreen, #39fd39, #27c2ba, green) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 0;
+}
 
 td {
     border: 3px solid #919191;
@@ -21,18 +29,19 @@ td {
 #position{
     margin-top: 10%;
     text-align: center;
+    z-index: 1;
 }
 
 .btn{
     font-size: 20px;
     color: white;
-    background: #000000;
+    background: palegreen;
     border: 3px solid #7f7f7f;
 }
 
 #X{
-    background: #ffffff;
-    color: #000000;
+    background: black;
+    color: palegreen;
 }
 
 #X:hover,
