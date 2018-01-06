@@ -1,10 +1,13 @@
 $(document).ready(function () {
 
     var user = "X";
+    var computer = "O";
+
+
     var board = [];
-    var boardIDs = ["row1col1", "row1col2", "row1col3",
+    var boardIDs = ["row3col1", "row3col2", "row3col3",
                     "row2col1", "row2col2", "row2col3",
-                    "row3col1", "row3col2", "row3col3"];
+                    "row1col1", "row1col2", "row1col3"];
 
     var initialValues = [$("#row1col1").text(), $("#row1col2").text(), $("#row1col3").text(),
                          $("#row2col1").text(), $("#row2col2").text(), $("#row2col3").text(),
@@ -71,6 +74,10 @@ $(document).ready(function () {
 
         console.log(board);
         checkForWin(user);
+        checkForWin(computer);
+        computerTurn();
+        checkForWin(user);
+        checkForWin(computer);
     });
 
 
@@ -89,6 +96,7 @@ $(document).ready(function () {
             board.pop();
             $("#" + boardIDs[i]).text(initialValues[i]);
         }
+        $("#winner").empty();
     }
 
     function pickSymbol(symbol) {
@@ -98,9 +106,11 @@ $(document).ready(function () {
         $(symbol).css("color", "black");
         if(symbol === "#X"){
             //console.log("O is changing");
+            computer = "O";
             $("#O").css({"background": "black", "color": "palegreen"});
         }
         else {
+            computer = "X";
             //console.log("X is changing");
             $("#X").css({"background": "black", "color": "palegreen"});
         }
@@ -110,44 +120,58 @@ $(document).ready(function () {
         console.log("Checking...");
         var win = false;
         if(board[0] === item && board[1] === item && board[2] === item){
-            console.log(user + " IS THE WINNER: ROW 3");
+            console.log(item + " IS THE WINNER: ROW 3");
             win = true;
         }
         else if(board[3] === item && board[4] === item && board[5] === item){
-            console.log(user + " IS THE WINNER: ROW 2");
+            console.log(item + " IS THE WINNER: ROW 2");
             win = true;
         }
         else if(board[6] === item && board[7] === item && board[8] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
         else if(board[0] === item && board[3] === item && board[6] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
         else if(board[1] === item && board[4] === item && board[7] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
         else if(board[2] === item && board[5] === item && board[8] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
         else if(board[0] === item && board[4] === item && board[8] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
         else if(board[2] === item && board[4] === item && board[6] === item){
-            console.log(user + " IS THE WINNER: ROW 1");
+            console.log(item + " IS THE WINNER: ROW 1");
             win = true;
         }
 
         if(win){
+            $("#winner").text(item + " Wins!");
             $("#reset").css("visibility", "visible");
         }
 
     }
 
+
+    function computerTurn() {
+        var spotAvailable = true;
+
+        while(spotAvailable){
+            var index = Math.floor(Math.random()*8);
+            if(board[index] !== "X" && board[index] !== "O"){
+                board[index] = computer;
+                $("#" + boardIDs[index]).text(computer);
+                spotAvailable = false;
+            }
+        }
+    }
 
 
 });

@@ -44,6 +44,10 @@ td {
     color: palegreen;
 }
 
+#winner{
+    padding-top: 5%;
+}
+
 #reset{
     margin-top: 1%;
     visibility: hidden;
