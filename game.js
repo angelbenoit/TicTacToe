@@ -38,46 +38,46 @@ $(document).ready(function () {
 
     //adds user's symbol to the board and the board array
     $("td").click(function () {
+        checkFullBoard(user, computer);
         //stores the id (where in the grid the user clicked) in a variable
         var id = $(this).attr("id");
 
-        //stores that id , user and array index into the check method
-        switch(id){
-            case "row1col1":
-                check(7, user, id);
-                break;
-            case "row1col2":
-                check(8, user, id);
-                break;
-            case "row1col3":
-                check(9, user, id);
-                break;
-            case "row2col1":
-                check(4, user, id);
-                break;
-            case "row2col2":
-                check(5, user, id);
-                break;
-            case "row2col3":
-                check(6, user, id);
-                break;
-            case "row3col1":
-                check(1, user, id);
-                break;
-            case "row3col2":
-                check(2, user, id);
-                break;
-            case "row3col3":
-                check(3, user, id);
-                break;
-        }
 
-        console.log(board);
-        checkForWin(user);
-        checkForWin(computer);
-        computerTurn();
-        checkForWin(user);
-        checkForWin(computer);
+            //stores that id , user and array index into the check method
+            switch (id) {
+                case "row1col1":
+                    check(7, user, id);
+                    break;
+                case "row1col2":
+                    check(8, user, id);
+                    break;
+                case "row1col3":
+                    check(9, user, id);
+                    break;
+                case "row2col1":
+                    check(4, user, id);
+                    break;
+                case "row2col2":
+                    check(5, user, id);
+                    break;
+                case "row2col3":
+                    check(6, user, id);
+                    break;
+                case "row3col1":
+                    check(1, user, id);
+                    break;
+                case "row3col2":
+                    check(2, user, id);
+                    break;
+                case "row3col3":
+                    check(3, user, id);
+                    break;
+            }
+
+            console.log(board);
+            checkFullBoard(user, computer);
+            computerTurn();
+
     });
 
 
@@ -153,25 +153,54 @@ $(document).ready(function () {
         }
 
         if(win){
-            $("#winner").text(item + " Wins!");
-            $("#reset").css("visibility", "visible");
+            resetOption(item);
+            return true;
         }
 
+        return false;
     }
 
-
+//have an array of booleans according to the board array, and if the spot is taken, put true
     function computerTurn() {
-        var spotAvailable = true;
 
-        while(spotAvailable){
-            var index = Math.floor(Math.random()*8);
-            if(board[index] !== "X" && board[index] !== "O"){
-                board[index] = computer;
-                $("#" + boardIDs[index]).text(computer);
-                spotAvailable = false;
+            var spotAvailable = true;
+
+            while(spotAvailable && !checkForWin(user) && !checkForWin(computer)){
+                var index = Math.floor(Math.random()*8);
+                if(board[index] !== "X" && board[index] !== "O"){
+                    board[index] = computer;
+                    $("#" + boardIDs[index]).text(computer);
+                    spotAvailable = false;
+                }
             }
-        }
+
     }
 
+    function checkFullBoard(player1, player2) {
+        if(checkForWin(player1) === true || checkForWin(player2) === true){
+            if(checkForWin(player1) === true)
+                resetOption(player1);
+            else
+                resetOption(player2);
+        }
+        else if( checkForWin(player1) === false && checkForWin(player2) === false){
+            var count = 0;
+            for(var i = 0; i < board.length; i++){
+                if(board[i] === "X" || board[i] === "O"){
+                    count++;
+                }
+            }
+            if(count === 8){
+                $("#reset").css("visibility", "visible");
+            }
+            return count;
+        }
+
+    }
+
+    function resetOption(player) {
+        $("#winner").text(player + " Wins!");
+        $("#reset").css("visibility", "visible");
+    }
 
 });
